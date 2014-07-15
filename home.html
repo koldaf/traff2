@@ -130,9 +130,9 @@
 				  $('#refresh').click(function(){
 					window.location='home.html';
 				})
-					$.post('engine/draft.php', function(data){//
+					$.post('http://koldaftest.6te.net/trafport/engine/draft.php', function(data){//
 						var rep = jQuery.parseJSON(data);
-						var repHtml = '';//http://koldaftest.6te.net/trafport/
+						var repHtml = '';//
 						$.each(rep, function(i, serverData){
 							repHtml = repHtml + '<div><h3 class="ui-bar ui-bar-g"><img src="images/signal icon.png" class="ui-nodisc-icon mypost"> '+
 													serverData.location+'</h3><p>'+

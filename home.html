@@ -45,7 +45,7 @@
                 	<a href="#panel" ><img src="images/menu.png" class="ui-nodisc-icon myicon"> Menu </a>
                     <a href="#login" > <img src="images/login.png" class="ui-nodisc-icon myicon">Log In </a>
                     <a href="#reg" > <img src="images/user.png" class="ui-nodisc-icon myicon">Join </a>
-                    <a href="" id="report"> <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>
+                    <!--<a href="" id="report"> <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>-->
                    <!-- <a href="#report" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>-->
                 </nav>
             </footer>
@@ -115,7 +115,7 @@
             </footer>
             <script>
 			//fetch json data...
-//		$('#home').on('pageinit', function(){
+		$('#home').on('pageinit', function(){
 				$.ajaxSetup({cache:false,beforeSend: function(){
 					  $('#display').hide();
 					  $('#loading').show();
@@ -142,17 +142,8 @@
 						});
 						$('#display').html(repHtml);
 					})
-				//This check for user log in
-				var user = window.localStorage.getItem("user");
-				if( user != '')
-				{
-					//console.log(user);
-					$('#report').attr('href','report.html');
-				}
-				else{
-					$('#report').hide();
-				}
-//				});
+			
+				});
             //Signup Form
 	$("#reg").on( "pageinit", function() {
 			$('form.reg').on('submit',function(){

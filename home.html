@@ -143,6 +143,8 @@
 				  },success: function(){
 					  $('#loading').hide();
 					  $('#display').show();
+				  }, error: function(){
+					  alert('Please Check Your Network Connection');
 				  }
 				  });
 				  $('#refresh').click(function(){

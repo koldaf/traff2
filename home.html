@@ -9,8 +9,25 @@
 		<link rel="stylesheet" href="theme/main.css"/>
 		<script src="jQuery/jquery.min.js"></script>
 		<script src="jQuery/jquery.mobile-min.js"></script>
-        <script src="jQuery/jquery.validate.min.js"></script>
-        
+        	<script src="jQuery/jquery.validate.min.js"></script>
+        	<script>
+        		// process the confirmation dialog result
+			  function onConfirm(buttonIndex) {
+				  navigator.app.exitApp();
+			  }
+		  
+			  // Show a custom confirmation dialog
+			  //
+			  function showConfirm() {
+				  navigator.notification.confirm(
+					  'Are you sure you want to quit Traffic Tracker?',  // message
+					  onConfirm,              // callback to invoke with index of button pressed
+					  'Exit',            // title
+					  'Yes,No'          // buttonLabels
+				  );
+			  }
+			  $('#exit').click(showConfirm())
+        	</script>
 	</head>
 	<body>
     	<!--This is the first page-->
@@ -26,7 +43,8 @@
                   <a href="tel:122" class="ui-btn ui-corner-all ui-icon-alert">Call FRSC Emergency Line</a>
                   <a href="http://www.nysc.gov.ng/" class="ui-btn ui-corner-all ui-icon-alert">About NYSC</a>
                   <a href="http://frsc.gov.ng/about-us/what-we-do" class="ui-btn ui-corner-all ui-icon-alert">About FRSC</a>
-                  <a href="#" class="ui-btn ui-corner-all ui-icon-carat-d">Developer</a>
+                  <a href="#exit" id="exit" class="ui-btn ui-corner-all ui-icon-carat-d" data-rel="close">Exit</a>
+                  <a href="tel:08097946436" class="ui-btn ui-corner-all ui-icon-carat-d">Developer</a>
               </div>
             </div>
         	<header data-role="header" data-position="fixed">

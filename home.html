@@ -14,37 +14,35 @@
         		// process the confirmation dialog result
 			  function onConfirm(buttonIndex) {
 				  navigator.app.exitApp();
-			  }
-		  
-			  // Show a custom confirmation dialog
-			  //
-			  function showConfirm() {
-				  navigator.notification.confirm(
-					  'Are you sure you want to quit Traffic Tracker?',  // message
-					  onConfirm,              // callback to invoke with index of button pressed
-					  'Exit',            // title
-					  'Yes,No'          // buttonLabels
-				  );
-			  }
-			  $('#exit').click(showConfirm())
+			  }		  
+			   //Show a custom confirmation dialog			  
+			  document.addEventListener('deviceready',function showConfirm(){
+					  navigator.notification.confirm(
+						  'Are you sure you want to quit Traffic Tracker?',  // message
+						  onConfirm,              // callback to invoke with index of button pressed
+						  'Exit',            // title
+						  'Yes,No'          // buttonLabels
+					  );
+				  }, true)
+			  
         	</script>
 	</head>
 	<body>
     	<!--This is the first page-->
-        <div data-role="page" id="home" data-theme="g" data-position="fixed">
+        <div data-role="page" id="home" data-theme="g" data-position="fixed" data-ajax="false">
         	<!--Panel shows here-->
             <!--Slide panel starts here-->
             <div data-role="panel" data-theme="g" data-position="left" data-display="push" id="panel">
                 <div data-role="header" class="ui-btn">Traffic Menu </div>
                <div data-role="controlgroup">
                   <a href="#reg" class="ui-btn ui-corner-all">Be a Reporter</a>
-                  <a href="#" class="ui-btn ui-corner-all ui-icon-alert">Report Emergency</a>
+                  <a href="mailto:koldaf20@gmail.com" class="ui-btn ui-corner-all ui-icon-alert">Report Emergency</a>
                   <a href="safety.html" class="ui-btn ui-corner-all ui-icon-alert">Safety Tips</a>
                   <a href="tel:122" class="ui-btn ui-corner-all ui-icon-alert">Call FRSC Emergency Line</a>
                   <a href="http://www.nysc.gov.ng/" class="ui-btn ui-corner-all ui-icon-alert">About NYSC</a>
                   <a href="http://frsc.gov.ng/about-us/what-we-do" class="ui-btn ui-corner-all ui-icon-alert">About FRSC</a>
-                  <a href="tel:08097946436" class="ui-btn ui-corner-all ui-icon-carat-d">Developer</a>
-                  <a href="#exit" id="exit" class="ui-btn ui-corner-all ui-icon-carat-d" data-rel="back">Exit</a>
+                  <a href="about.html" class="ui-btn ui-corner-all ui-icon-carat-d">Developer</a>
+                  <a href="#exit" id="exit" class="ui-btn ui-corner-all ui-icon-carat-d" onClick="showConfirm">Exit</a>
               </div>
             </div>
         	<header data-role="header" data-position="fixed">
@@ -61,7 +59,7 @@
         	<footer  data-role="footer" data-position="fixed">
             	<nav data-role="navbar" class="ui-controlgroup-controls" align="center">
                 	<a href="#panel" ><img src="images/menu.png" class="ui-nodisc-icon myicon"> Menu </a>
-                    <a href="#login" > <img src="images/login.png" class="ui-nodisc-icon myicon">Log In </a>
+                    <a href="#login" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report Traffic </a>
                     <a href="#reg" > <img src="images/user.png" class="ui-nodisc-icon myicon">Join </a>
                     <!--<a href="" id="report"> <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>-->
                    <!-- <a href="#report" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>-->
@@ -71,7 +69,7 @@
             	<!--This is the Loginpage-->
         <div data-role="page" id="login" data-theme="g" data-position="fixed" data-title="Login" data-add-back-btn="true" data-back-btn-text="Take me Back">
         	<header data-role="header">
-            <a href="#home" data-icon="home" data-iconpos="notext"> Take me Home </a>
+            <!--<a href="#home" data-icon="home" data-iconpos="notext"> Take me Home </a>-->
             <h1>Log In</h1>
             </header>
             <article data-role="content" class="ui-content">
@@ -83,18 +81,18 @@
                 </form>
 				<div id="wait"> <img src='images/17.GIF' alt="Loading" width="50%" height="50%"> <br>Logging you in...</div>
             </article>
-        	<footer  data-role="footer" data-position="fixed">
+        	<!--<footer  data-role="footer" data-position="fixed">
             	<nav data-role="navbar" class="ui-controlgroup-controls" align="center">
                     <a href="#reg" > <img src="images/user.png" class="ui-nodisc-icon myicon">Join </a>
                     <a href="#report" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>
                 </nav>
-            </footer>
+            </footer>-->
             </div>
             
             <!--This is the Register page-->
         <div data-role="page" id="reg" data-theme="g" data-position="fixed" data-title="Register" data-dom-cache="no-cache">
         	<header data-role="header">
-            <a href="#home" data-icon="home" data-iconpos="notext"> Take me Home </a>
+            <!--<a href="#home" data-icon="home" data-iconpos="notext"> Take me Home </a>-->
             <h1><big>Become a Member</big></h1>
             </header>
             <article data-role="main" class="ui-content">
@@ -116,21 +114,22 @@
                     	<input type="email" name="email" placeholder="E-mail Address"/>
                         
 					<label for="location" class="ui-hidden-accessible"> Location </label>
-                    <select name="location" data-mini="true">
+                    <!--<select name="location" data-mini="true">
                     	<option value=""> Select Location You Want to Report From </option>
                         <option value="offagarrage">Offa Garage </option>
                         <option value="Gaakanbi">Gaa Akanbi</option>
                         <option> And Other Locations </option>
-                    </select>
+                    </select>-->
                        <input type="submit" name="signup" value="Sign Up">
                 </form>
                 <div id="load"><img src='images/17.GIF' alt="Loading"> <br>Completing Your Registration... Please Wait...</div>
             </article>
-        	<footer  data-role="footer" data-position="fixed">
-            	<nav data-role="navbar" class="ui-controlgroup-controls" align="center">
-                    <a href="#report" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>
+        	<!--<footer  data-role="footer" data-position="fixed">
+            	for NYSC/FRSC CDS
+                <nav data-role="navbar" class="ui-controlgroup-controls" align="center">
+                   
                 </nav>
-            </footer>
+            </footer>-->
             <script>
 			//fetch json data...
 		$('#home').on('pageinit', function(){

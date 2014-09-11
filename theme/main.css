@@ -90,6 +90,34 @@
 .ui-page {
     -webkit-backface-visibility: hidden;
 } /*This removes the fliker issue*/
+.dcont{
+	width:90%;
+	margin:auto;
+	/*background:rgba(153,204,51,0.7);
+	color:#FFF;*/
+	text-align:justify;
+	padding:5px;
+	border-radius:10px;
+	
+}
+#bttn{
+	width:90%;
+	margin:auto;
+}
+#bttn ul{
+	list-style-type:none;
+	text-align:center;
+}
+#bttn li{
+	float:left;
+	width: 160px;
+}
+#bttn img{
+	width:100px;
+	height:100px;
+	border:none;
+	border-radius:50px;
+}
 /*.menu{
 	float:left;
 	padding:5px;

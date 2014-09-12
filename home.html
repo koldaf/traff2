@@ -36,13 +36,13 @@
             <div data-role="panel" data-theme="g" data-position="left" data-display="push" id="panel">
                 <div data-role="header" class="ui-btn">Traffic Menu </div>
                <div data-role="controlgroup">
-                  <a href="#reg" class="ui-btn ui-corner-all">Be a Reporter</a>
+                  <a href="#reg" data-ajax="false" class="ui-btn ui-corner-all">Be a Reporter</a>
                   <a href="mailto:koldaf20@gmail.com" class="ui-btn ui-corner-all ui-icon-alert">Report Emergency</a>
-                  <a href="safety.html" class="ui-btn ui-corner-all ui-icon-alert">Safety Tips</a>
+                  <a href="safety.html" data-ajax="false" class="ui-btn ui-corner-all ui-icon-alert">Safety Tips</a>
                   <a href="tel:122" class="ui-btn ui-corner-all ui-icon-alert">Call FRSC Emergency Line</a>
                   <a href="http://www.nysc.gov.ng/" class="ui-btn ui-corner-all ui-icon-alert">About NYSC</a>
                   <a href="http://frsc.gov.ng/about-us/what-we-do" class="ui-btn ui-corner-all ui-icon-alert">About FRSC</a>
-                  <a href="about.html" class="ui-btn ui-corner-all ui-icon-carat-d">Developer</a>
+                  <a href="about.html" data-ajax="false" class="ui-btn ui-corner-all ui-icon-carat-d">Developer</a>
                   <a href="#exit" id="exit" class="ui-btn ui-corner-all ui-icon-carat-d" onClick="showConfirm">Exit</a>
               </div>
             </div>
@@ -53,14 +53,15 @@
             <article data-role="content" class="ui-content">
             	<!--<img src="images/koldaf.gif" id="loading" alt="Please Wait" width="80%" height="50%">-->
                 <img src="images/17.GIF" id="loading">
-                <div id="display" data-filter="true" data-filter-placeholder="Search Traffic Report">
+                <!--<div id="admin" data-role="fieldcontain"></div>-->
+                <div id="display" data-filter="true" data-filter-placeholder="Search Traffic Report" data-ajax="false">
                 	
                 </div>
             </article>
         	<footer  data-role="footer" data-position="fixed">
             	<nav data-role="navbar" class="ui-controlgroup-controls" align="center">
                 	<a href="#panel" ><img src="images/menu.png" class="ui-nodisc-icon myicon"> Menu </a>
-                    <a href="#login" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report Traffic </a>
+                    <a href="#login" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report</a>
                     <a href="#reg" > <img src="images/user.png" class="ui-nodisc-icon myicon">Join </a>
                     <!--<a href="" id="report"> <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>-->
                    <!-- <a href="#report" > <img src="images/mic.png" class="ui-nodisc-icon myicon"> Report </a>-->
@@ -80,7 +81,7 @@
                     <p><input type="password" name="pass" placeholder="Input Your Password"/></p>
                     <p><input type="submit" name="login" value="Log In"></p>
                 </form>
-				<div id="wait"> <img src='images/17.GIF' alt="Loading" width="50%" height="50%"> <br>Logging you in...</div>
+				<div id="wait"> <img src='images/17.GIF' alt="Loading"> <br>Logging you in...</div>
             </article>
         	<!--<footer  data-role="footer" data-position="fixed">
             	<nav data-role="navbar" class="ui-controlgroup-controls" align="center">
@@ -125,6 +126,7 @@
                 </form>
                 <div id="load"><img src='images/17.GIF' alt="Loading"> <br>Completing Your Registration... Please Wait...</div>
             </article>
+            
         	<!--<footer  data-role="footer" data-position="fixed">
             	for NYSC/FRSC CDS
                 <nav data-role="navbar" class="ui-controlgroup-controls" align="center">
@@ -154,16 +156,47 @@
 						var rep = jQuery.parseJSON(data);
 						var repHtml = '';//
 						$.each(rep, function(i, serverData){
-							repHtml = repHtml + '<div><h3 class="ui-bar ui-bar-g"><img src="images/signal icon.png" class="ui-nodisc-icon mypost"> '+
-													serverData.location+'</h3><p>'+
-													serverData.report + '</p><span>Posted By: '+
+							repHtml = repHtml + '<div>' + dobgd(serverData.status, serverData.location) +
+													 '<p>'+
+													serverData.report + '</p>' + 
+													/*counts(i,serverData.like, serverData.dislike, serverData.ref) +*/ '<span>Posted By: '+
 													serverData.user + '</span> <small>'+
 													serverData.time+' ago</small></div>';
 						});
 						$('#display').html(repHtml);
 					})
-			
+					/* $.get('http://koldaftest.6te.net/trafport/engine/note.php', function(cb){
+						 var ret = jQuery.parseJSON(cb);
+						 if(ret.display == 'on'){
+							 $('#admin').fadeIn('slow');
+							 $('#admin').html(ret.note);
+						 }
+						 else{
+							 $('#admin').fadeOut('slow');
+						 }
+					 });*/
+					/*$('#admin').load('http://koldaftest.6te.net/trafport/engine/note.php');*/
 				});
+				function counts(i, likes, dislikes, ref){
+					return '<section><a href="like.php?id='+ref+'" data-role="button" id="'+i+'"/> <img src="images/like.png" alt="Like"/>'+likes+'</a>'
+							+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+								  + '<a href="like.php?id='+ref+'" data-role="button" id="'+i+'"/> <img src="images/dislike.png" alt="Like"/>'+dislikes+'</a></section>';
+				}
+				function dobgd(stat,location){
+					if(stat == 1){
+						var h3 = '<h3 class="ui-bar ui-bar-g "><img src="images/signal icon.png" class="ui-nodisc-icon mypost">'
+									+ location +  '</h3>';
+					}
+					else if(stat == 2){
+						var h3 = '<h3 class="ui-bar ui-bar-g  steady "><img src="images/signal icon.png" class="ui-nodisc-icon mypost">'
+									+ location +  '</h3>';
+					}
+					else{
+						var h3 = '<h3 class="ui-bar ui-bar-g  lock "><img src="images/signal icon.png" class="ui-nodisc-icon mypost">'
+										+ location + '</h3>';
+					}
+					return h3;
+				}
             //Signup Form
 	$("#reg").on( "pageinit", function() {
 			$('form.reg').on('submit',function(){

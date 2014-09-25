@@ -10,8 +10,9 @@
 		<script src="jQuery/jquery.min.js"></script>
 		<script src="jQuery/jquery.mobile-min.js"></script>
         	<script src="jQuery/jquery.validate.min.js"></script>
+            <script src="cordova.js"></script>
         	<script>
-			$(document).ready(function() {
+			document.addEventListener('deviceready',showConfirm(),false);
         		// process the confirmation dialog result
 			  function onConfirm(buttonIndex) {
 				  navigator.app.exitApp();
@@ -25,7 +26,6 @@
 						  'Yes,No'          // buttonLabels
 					  );
 				  }
-			   });
         	</script>
 	</head>
 	<body>
@@ -47,7 +47,7 @@
               </div>
             </div>
         	<header data-role="header" data-position="fixed">
-            	<h1>TRIAL VERSION::Traffic Tracker</h1>
+            	<h1>Traffic Tracker</h1>
                 <a href="#" data-icon="refresh" id="refresh" data-iconpos="right">Refresh</a>
             </header>
             <article data-role="content" class="ui-content">
@@ -219,10 +219,11 @@
 							else if(returns.result == 104){ alert("Please Input a Valid Phone Number");}			
 							else if(returns.result == 105){ alert("Username or Email not available, \n Try Another one");}
 							else if(returns.result == 106){ alert("There was an error! \n Please ensure you have an active network");}
-							if(returns.result == 107){ alert("Registration Complete");
-															if(confirm('Do you want to upload traffic Report Now?'))
+							if(returns.result == 107){ alert("Registration Completed");
+														$.mobile.changePage('#login');
+															/*if(confirm('Do you want to upload traffic Report Now?'))
 															{ window.location='report.html';}
-															else{ window.location='home.html';}
+															else{ window.location='home.html';}*/
 							
 							}
 						}			

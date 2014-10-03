@@ -12,11 +12,15 @@
         	<script src="jQuery/jquery.validate.min.js"></script>
             <script src="cordova.js"></script>
         	<script>
-			document.addEventListener('deviceready',showConfirm(),false);
-        		// process the confirmation dialog result
+			function onLoad(){
+				document.addEventListener('deviceready',showConfirm(),false);
+				
+				// process the confirmation dialog result
 			  function onConfirm(buttonIndex) {
 				  navigator.app.exitApp();
-			  }		  
+			  }	
+			}
+        			  
 			   //Show a custom confirmation dialog			  
 			  function showConfirm(){
 					  navigator.notification.confirm(
@@ -28,7 +32,7 @@
 				  }
         	</script>
 	</head>
-	<body>
+	<body onLoad="onLoad()">
     	<!--This is the first page-->
         <div data-role="page" id="home" data-theme="g" data-position="fixed" data-ajax="false">
         	<!--Panel shows here-->
